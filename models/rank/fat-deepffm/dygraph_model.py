@@ -32,13 +32,13 @@ class DygraphModel():
         reduction = config.get("hyper_parameters.reduction")
         dnn_layers_size = config.get("hyper_parameters.dnn_layers_size")
 
-        ffm_model = net.FFMLayer(sparse_feature_number, sparse_feature_dim,
-                                 dense_feature_dim,
-                                 sparse_input_slot - 1 + dense_feature_dim,
-                                 reduction,
-                                 dnn_layers_size)
+        fat_deepffm_model = net.FAT_DeepFFMLayer(sparse_feature_number, sparse_feature_dim,
+                                                 dense_feature_dim,
+                                                 sparse_input_slot - 1 + dense_feature_dim,
+                                                 reduction,
+                                                 dnn_layers_size)
 
-        return ffm_model
+        return fat_deepffm_model
 
     # define feeds which convert numpy of batch data to paddle.tensor 
     def create_feeds(self, batch_data, config):
