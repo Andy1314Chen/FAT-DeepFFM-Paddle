@@ -34,7 +34,7 @@ hyper_parameters:
   # optimizer config
   optimizer:
     class: Adam
-    learning_rate: 0.002
+    learning_rate: 0.001
     strategy: async
   # user-defined <key, value> pairs
   sparse_inputs_slots: 27
