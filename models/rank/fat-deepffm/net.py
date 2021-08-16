@@ -14,13 +14,18 @@
 
 import paddle
 import paddle.nn as nn
-import paddle.nn.functional as F
+import paddle.nn.functional as Fun
 import math
-import numpy as np
 
 
 class MLPLayer(nn.Layer):
-    def __init__(self, input_shape, units_list=None, l2=0.01, last_action=None, **kwargs):
+    def __init__(self,
+                 input_shape,
+                 units_list=None,
+                 l2=0.01,
+                 last_action=None,
+                 dropout=0.5,
+                 **kwargs):
         super(MLPLayer, self).__init__(**kwargs)
 
         if units_list is None:
@@ -31,6 +36,7 @@ class MLPLayer(nn.Layer):
         self.l2 = l2
         self.mlp = []
         self.last_action = last_action
+        self.dropout = dropout
 
         for i, unit in enumerate(units_list[:-1]):
             if i != len(units_list) - 1:
@@ -48,6 +54,10 @@ class MLPLayer(nn.Layer):
                 norm = paddle.nn.BatchNorm1D(units_list[i + 1])
                 self.mlp.append(norm)
                 self.add_sublayer('norm_%d' % i, norm)
+                
+                dropout = paddle.nn.AlphaDropout(p=self.dropout)
+                self.mlp.append(dropout)
+                self.add_sublayer('dropout_%d' % i, dropout)
             else:
                 dense = paddle.nn.Linear(in_features=unit,
                                          out_features=units_list[i + 1],
@@ -67,7 +77,7 @@ class MLPLayer(nn.Layer):
         return outputs
 
 
-class FFMLayer(nn.Layer):
+class FAT_DeepFFMLayer(nn.Layer):
     def __init__(self,
                  sparse_feature_number,
                  sparse_feature_dim,
@@ -75,7 +85,7 @@ class FFMLayer(nn.Layer):
                  sparse_num_field,
                  reduction,
                  dnn_layers_size):
-        super(FFMLayer, self).__init__()
+        super(FAT_DeepFFMLayer, self).__init__()
         self.sparse_feature_number = sparse_feature_number
         self.sparse_feature_dim = sparse_feature_dim
         self.dense_feature_dim = dense_feature_dim
@@ -83,11 +93,8 @@ class FFMLayer(nn.Layer):
         self.reduction = reduction
         self.dnn_layers_size = dnn_layers_size
 
-        # self.ffm = FFM(sparse_feature_number, sparse_feature_dim,
-        #                dense_feature_dim, sparse_num_field)
-
-        self.ffm = DeepFFM(
-            sparse_feature_number=sparse_feature_number,
+        self.deepFFM = DeepFFM(
+            sparse_feature_number=self.sparse_feature_number,
             sparse_feature_dim=self.sparse_feature_dim,
             dense_feature_dim=self.dense_feature_dim,
             sparse_num_field=self.sparse_num_field,
@@ -102,9 +109,9 @@ class FFMLayer(nn.Layer):
 
     def forward(self, sparse_inputs, dense_inputs):
 
-        y_first_order, y_second_order = self.ffm(sparse_inputs, dense_inputs)
+        y_first_order, y_second_order = self.deepFFM(sparse_inputs, dense_inputs)
 
-        predict = F.sigmoid(y_first_order + y_second_order + self.bias)
+        predict = Fun.sigmoid(y_first_order + y_second_order + self.bias)
 
         return predict
 
@@ -131,6 +138,7 @@ class CENet(nn.Layer):
         """
         B, N, N_E = paddle.shape(inputs)
         inputs = paddle.reshape(inputs, shape=[B, N**2, -1])
+
         # (B, N^2, 1)
         pooled_inputs = self.pooling(inputs)
 
@@ -145,89 +153,6 @@ class CENet(nn.Layer):
         return paddle.reshape(outputs, shape=[B, N, -1])
 
 
-class FFM(nn.Layer):
-    def __init__(self, sparse_feature_number, sparse_feature_dim,
-                 dense_feature_dim, sparse_num_field):
-        super(FFM, self).__init__()
-        self.sparse_feature_number = sparse_feature_number
-        self.sparse_feature_dim = sparse_feature_dim
-        self.dense_feature_dim = dense_feature_dim
-        self.dense_emb_dim = self.sparse_feature_dim
-        self.sparse_num_field = sparse_num_field
-        self.init_value_ = 0.1
-
-        # sparse part coding
-        self.embedding_one = paddle.nn.Embedding(
-            sparse_feature_number,
-            1,
-            sparse=True,
-            weight_attr=paddle.ParamAttr(
-                initializer=paddle.nn.initializer.TruncatedNormal(
-                    mean=0.0,
-                    std=self.init_value_ /
-                    math.sqrt(float(self.sparse_feature_dim)))))
-
-        self.embedding = paddle.nn.Embedding(
-            self.sparse_feature_number,
-            self.sparse_feature_dim * self.sparse_num_field,
-            sparse=True,
-            weight_attr=paddle.ParamAttr(
-                initializer=paddle.nn.initializer.TruncatedNormal(
-                    mean=0.0,
-                    std=self.init_value_ /
-                    math.sqrt(float(self.sparse_feature_dim)))))
-
-        # dense part coding
-        self.dense_w_one = paddle.create_parameter(
-            shape=[self.dense_feature_dim],
-            dtype='float32',
-            default_initializer=paddle.nn.initializer.Constant(value=1.0))
-
-        self.dense_w = paddle.create_parameter(
-            shape=[
-                1, self.dense_feature_dim,
-                self.dense_emb_dim * self.sparse_num_field
-            ],
-            dtype='float32',
-            default_initializer=paddle.nn.initializer.Constant(value=1.0))
-
-    def forward(self, sparse_inputs, dense_inputs):
-        # -------------------- first order term  --------------------
-        sparse_inputs_concat = paddle.concat(sparse_inputs, axis=1)
-        sparse_emb_one = self.embedding_one(sparse_inputs_concat)
-
-        dense_emb_one = paddle.multiply(dense_inputs, self.dense_w_one)
-        dense_emb_one = paddle.unsqueeze(dense_emb_one, axis=2)
-
-        y_first_order = paddle.sum(sparse_emb_one, 1) + paddle.sum(
-            dense_emb_one, 1)
-
-        # -------------------Field-aware second order term  --------------------
-        sparse_embeddings = self.embedding(sparse_inputs_concat)
-        dense_inputs_re = paddle.unsqueeze(dense_inputs, axis=2)
-        dense_embeddings = paddle.multiply(dense_inputs_re, self.dense_w)
-        feat_embeddings = paddle.concat([sparse_embeddings, dense_embeddings],
-                                        1)
-
-        field_aware_feat_embedding = paddle.reshape(
-            feat_embeddings,
-            shape=[
-                -1, self.sparse_num_field, self.sparse_num_field,
-                self.sparse_feature_dim
-            ])
-        field_aware_interaction_list = []
-        for i in range(self.sparse_num_field):
-            for j in range(i + 1, self.sparse_num_field):
-                field_aware_interaction_list.append(
-                    paddle.sum(field_aware_feat_embedding[:, i, j, :] *
-                               field_aware_feat_embedding[:, j, i, :],
-                               1,
-                               keepdim=True))
-
-        y_field_aware_second_order = paddle.add_n(field_aware_interaction_list)
-        return y_first_order, y_field_aware_second_order
-
-
 class DeepFFM(nn.Layer):
     def __init__(self,
                  sparse_feature_number,
@@ -235,7 +160,8 @@ class DeepFFM(nn.Layer):
                  dense_feature_dim,
                  sparse_num_field,
                  reduction,
-                 dnn_layers_size):
+                 dnn_layers_size,
+                 is_hadamard_product=True):
         super(DeepFFM, self).__init__()
         self.sparse_feature_number = sparse_feature_number
         self.sparse_feature_dim = sparse_feature_dim
@@ -245,6 +171,7 @@ class DeepFFM(nn.Layer):
         self.init_value_ = 0.1
         self.dnn_layers_size = dnn_layers_size
         self.reduction = reduction
+        self.is_hadamard_product = is_hadamard_product
 
         # sparse part coding
         self.embedding_one = paddle.nn.Embedding(
@@ -283,7 +210,9 @@ class DeepFFM(nn.Layer):
 
         self.cen = CENet(self.sparse_num_field, self.reduction)
 
-        self.mlp = MLPLayer(input_shape=int(self.sparse_num_field * (self.sparse_num_field - 1) / 2),
+        input_shape = int(self.sparse_num_field * (self.sparse_num_field - 1) / 2)
+        input_shape = input_shape * self.sparse_feature_dim if self.is_hadamard_product else input_shape * 1
+        self.mlp = MLPLayer(input_shape=input_shape,
                             units_list=dnn_layers_size,
                             last_action="relu")
 
@@ -302,12 +231,14 @@ class DeepFFM(nn.Layer):
         sparse_embeddings = self.embedding(sparse_inputs_concat)
         dense_inputs_re = paddle.unsqueeze(dense_inputs, axis=2)
         dense_embeddings = paddle.multiply(dense_inputs_re, self.dense_w)
+
         # (batch_size, sparse_num_field, sparse_num_field * embedding_size)
         feat_embeddings = paddle.concat([sparse_embeddings, dense_embeddings],
                                         1)
 
         feat_embeddings = self.cen(feat_embeddings)
 
+        # (batch_size, sparse_num_field, sparse_num_field, embedding_size)
         field_aware_feat_embedding = paddle.reshape(
             feat_embeddings,
             shape=[
@@ -317,13 +248,13 @@ class DeepFFM(nn.Layer):
         field_aware_interaction_list = []
         for i in range(self.sparse_num_field):
             for j in range(i + 1, self.sparse_num_field):
-                field_aware_interaction_list.append(
-                    paddle.sum(field_aware_feat_embedding[:, i, j, :] *
-                               field_aware_feat_embedding[:, j, i, :],
-                               1,
-                               keepdim=True))
-
-        # y_field_aware_second_order = paddle.add_n(field_aware_interaction_list)
+                # (batch_size, embedding_size)
+                tmp = field_aware_feat_embedding[:, i, j, :] * field_aware_feat_embedding[:, j, i, :]
+                field_aware_interaction_list.append(tmp if self.is_hadamard_product else paddle.sum(tmp,
+                                                                                                    axis=1,
+                                                                                                    keepdim=True))
+        # 1. dot product, shape: (batch_size, (sparse_field_num * (sparse_field_num - 1)/2))
+        # 2. hadamard product, shape: (batch_size, (sparse_field_num * (sparse_field_num - 1)/2) * embedding_size)
         ffm_output = paddle.concat(field_aware_interaction_list, axis=1)
         y_field_aware_second_order = self.mlp(ffm_output)
 

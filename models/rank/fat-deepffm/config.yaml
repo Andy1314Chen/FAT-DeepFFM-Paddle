@@ -39,7 +39,7 @@ hyper_parameters:
   # user-defined <key, value> pairs
   sparse_inputs_slots: 27
   sparse_feature_number: 1000001
-  sparse_feature_dim: 9
+  sparse_feature_dim: 10
   dense_input_dim: 13
   reduction: 1
-  dnn_layers_size: [400, 400, 400, 1]
+  dnn_layers_size: [1600, 1600, 1600, 1]
