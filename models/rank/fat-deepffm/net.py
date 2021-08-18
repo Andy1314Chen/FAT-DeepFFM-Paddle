@@ -51,13 +51,13 @@ class MLPLayer(nn.Layer):
                 self.mlp.append(relu)
                 self.add_sublayer('relu_%d' % i, relu)
 
-                norm = paddle.nn.BatchNorm1D(units_list[i + 1])
-                self.mlp.append(norm)
-                self.add_sublayer('norm_%d' % i, norm)
-                
                 dropout = paddle.nn.AlphaDropout(p=self.dropout)
                 self.mlp.append(dropout)
                 self.add_sublayer('dropout_%d' % i, dropout)
+
+                norm = paddle.nn.BatchNorm1D(units_list[i + 1])
+                self.mlp.append(norm)
+                self.add_sublayer('norm_%d' % i, norm)
             else:
                 dense = paddle.nn.Linear(in_features=unit,
                                          out_features=units_list[i + 1],
