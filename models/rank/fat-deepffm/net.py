@@ -119,15 +119,20 @@ class FAT_DeepFFMLayer(nn.Layer):
 class CENet(nn.Layer):
     def __init__(self,
                  sparse_field_num,
+                 sparse_feature_dim,
                  reduction):
         super(CENet, self).__init__()
         self.sparse_field_num = sparse_field_num ** 2
+        self.sparse_feature_dim = sparse_feature_dim
         self.reduced_num_fields = self.sparse_field_num // reduction
 
-        self.pooling = paddle.nn.AdaptiveAvgPool1D(output_size=1)
         self.mlp = MLPLayer(input_shape=self.sparse_field_num,
                             units_list=[self.reduced_num_fields, self.sparse_field_num],
                             last_action="relu")
+        self.conv1d = paddle.create_parameter(
+                            shape=[self.sparse_feature_dim * sparse_field_num, sparse_field_num],
+                            dtype='float32',
+                            default_initializer=paddle.nn.initializer.KaimingUniform())
 
     def forward(self, inputs):
         """
@@ -136,21 +141,25 @@ class CENet(nn.Layer):
         Args:
             inputs, shape = (batch_size, sparse_num_field, sparse_num_field * embedding_size)
         """
+        # (b, n, n*k)
         B, N, N_E = paddle.shape(inputs)
-        inputs = paddle.reshape(inputs, shape=[B, N**2, -1])
 
-        # (B, N^2, 1)
-        pooled_inputs = self.pooling(inputs)
+        # (b, n, n) <- (b, n, n*k) * (n*k, n)
+        d_v = paddle.matmul(inputs, self.conv1d)
+        d_v = Fun.relu(d_v)
 
-        # (B, N^2)
-        pooled_inputs = paddle.squeeze(pooled_inputs, axis=-1)
+        # (b, n*n)
+        D = paddle.reshape(d_v, shape=[B, -1])
 
-        # (B, N^2)
-        attn_w = self.mlp(pooled_inputs)
+        # (b, n*n)
+        s = self.mlp(D)
 
-        # (B, N^2, E)
-        outputs = paddle.multiply(inputs, paddle.unsqueeze(attn_w, axis=-1))
-        return paddle.reshape(outputs, shape=[B, N, -1])
+        # (b, n, n*k) <- (b, n, n, k) * (b, n, n, 1)
+        aem = paddle.reshape(paddle.multiply(paddle.reshape(inputs, shape=(B, N, N, -1)),
+                                             paddle.reshape(s, shape=(B, N, -1))),
+                             shape=(B, N, -1))
+
+        return aem
 
 
 class DeepFFM(nn.Layer):
@@ -208,7 +217,7 @@ class DeepFFM(nn.Layer):
             dtype='float32',
             default_initializer=paddle.nn.initializer.Constant(value=1.0))
 
-        self.cen = CENet(self.sparse_num_field, self.reduction)
+        self.cen = CENet(self.sparse_num_field, self.sparse_feature_dim, self.reduction)
 
         input_shape = int(self.sparse_num_field * (self.sparse_num_field - 1) / 2)
         input_shape = input_shape * self.sparse_feature_dim if self.is_hadamard_product else input_shape * 1
