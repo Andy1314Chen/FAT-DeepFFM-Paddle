@@ -20,7 +20,7 @@ runner:
   train_batch_size: 2
   epochs: 3
   print_interval: 2
-  #model_init_path: "output_model/0" # init model
+#  model_init_path: "output_model_fat_deepffm/1" # init model
   model_save_path: "output_model_fat_deepffm"
   test_data_dir: "data/sample_data/train"
   infer_reader_path: "criteo_reader" # importlib format
@@ -37,9 +37,10 @@ hyper_parameters:
     learning_rate: 0.001
     strategy: async
   # user-defined <key, value> pairs
-  sparse_inputs_slots: 27
+  sparse_inputs_slots: 26
   sparse_feature_number: 1000001
   sparse_feature_dim: 10
   dense_input_dim: 13
   reduction: 1
   dnn_layers_size: [1600, 1600, 1600, 1]
+  dense_dnn_layers_size: [512, 512]

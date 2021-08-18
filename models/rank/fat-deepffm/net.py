@@ -84,7 +84,8 @@ class FAT_DeepFFMLayer(nn.Layer):
                  dense_feature_dim,
                  sparse_num_field,
                  reduction,
-                 dnn_layers_size):
+                 dnn_layers_size,
+                 dense_dnn_layers_size):
         super(FAT_DeepFFMLayer, self).__init__()
         self.sparse_feature_number = sparse_feature_number
         self.sparse_feature_dim = sparse_feature_dim
@@ -92,6 +93,7 @@ class FAT_DeepFFMLayer(nn.Layer):
         self.sparse_num_field = sparse_num_field
         self.reduction = reduction
         self.dnn_layers_size = dnn_layers_size
+        self.dense_dnn_layers_size = dense_dnn_layers_size
 
         self.deepFFM = DeepFFM(
             sparse_feature_number=self.sparse_feature_number,
@@ -99,7 +101,9 @@ class FAT_DeepFFMLayer(nn.Layer):
             dense_feature_dim=self.dense_feature_dim,
             sparse_num_field=self.sparse_num_field,
             reduction=self.reduction,
-            dnn_layers_size=self.dnn_layers_size
+            dnn_layers_size=self.dnn_layers_size,
+            dense_dnn_layers_size=self.dense_dnn_layers_size,
+            is_hadamard_product=True
         )
 
         self.bias = paddle.create_parameter(
@@ -170,6 +174,7 @@ class DeepFFM(nn.Layer):
                  sparse_num_field,
                  reduction,
                  dnn_layers_size,
+                 dense_dnn_layers_size,
                  is_hadamard_product=True):
         super(DeepFFM, self).__init__()
         self.sparse_feature_number = sparse_feature_number
@@ -179,6 +184,7 @@ class DeepFFM(nn.Layer):
         self.sparse_num_field = sparse_num_field
         self.init_value_ = 0.1
         self.dnn_layers_size = dnn_layers_size
+        self.dense_dnn_layers_size = dense_dnn_layers_size
         self.reduction = reduction
         self.is_hadamard_product = is_hadamard_product
 
@@ -207,15 +213,7 @@ class DeepFFM(nn.Layer):
         self.dense_w_one = paddle.create_parameter(
             shape=[self.dense_feature_dim],
             dtype='float32',
-            default_initializer=paddle.nn.initializer.Constant(value=1.0))
-
-        self.dense_w = paddle.create_parameter(
-            shape=[
-                1, self.dense_feature_dim,
-                self.dense_emb_dim * self.sparse_num_field
-            ],
-            dtype='float32',
-            default_initializer=paddle.nn.initializer.Constant(value=1.0))
+            default_initializer=paddle.nn.initializer.KaimingUniform())
 
         self.cen = CENet(self.sparse_num_field, self.sparse_feature_dim, self.reduction)
 
@@ -224,26 +222,33 @@ class DeepFFM(nn.Layer):
         self.mlp = MLPLayer(input_shape=input_shape,
                             units_list=dnn_layers_size,
                             last_action="relu")
+        self.dense_dnn = MLPLayer(input_shape=self.dense_feature_dim,
+                                  units_list=self.dense_dnn_layers_size,
+                                  last_action="relu")
 
     def forward(self, sparse_inputs, dense_inputs):
+        """
+        sparse_inputs: (batch_size, sparse_field_num)
+        dense_inputs: (batch_size, dense_feature_dim)
+        """
         # -------------------- first order term  --------------------
+        # (batch_size, sparse_field_num - 1, 1)
         sparse_inputs_concat = paddle.concat(sparse_inputs, axis=1)
         sparse_emb_one = self.embedding_one(sparse_inputs_concat)
 
+        # (batch_size, dense_feature_dim)
         dense_emb_one = paddle.multiply(dense_inputs, self.dense_w_one)
-        dense_emb_one = paddle.unsqueeze(dense_emb_one, axis=2)
 
-        y_first_order = paddle.sum(sparse_emb_one, 1) + paddle.sum(
-            dense_emb_one, 1)
+        # (batch_size, 1)
+        y_first_order = paddle.sum(sparse_emb_one, axis=1) + paddle.sum(dense_emb_one, axis=1, keepdim=True)
 
         # -------------------Field-aware second order term  --------------------
         sparse_embeddings = self.embedding(sparse_inputs_concat)
-        dense_inputs_re = paddle.unsqueeze(dense_inputs, axis=2)
-        dense_embeddings = paddle.multiply(dense_inputs_re, self.dense_w)
+        # (batch_size, 1, sparse_feature_dim * embedding_size)
+        dense_embeddings = paddle.unsqueeze(self.dense_dnn(dense_inputs), axis=1)
 
         # (batch_size, sparse_num_field, sparse_num_field * embedding_size)
-        feat_embeddings = paddle.concat([sparse_embeddings, dense_embeddings],
-                                        1)
+        feat_embeddings = paddle.concat([sparse_embeddings, dense_embeddings], axis=1)
 
         feat_embeddings = self.cen(feat_embeddings)
 

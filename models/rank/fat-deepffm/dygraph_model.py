@@ -26,17 +26,19 @@ class DygraphModel():
         sparse_feature_number = config.get(
             "hyper_parameters.sparse_feature_number")
         sparse_feature_dim = config.get("hyper_parameters.sparse_feature_dim")
-        sparse_fea_num = config.get('hyper_parameters.sparse_fea_num')
         dense_feature_dim = config.get('hyper_parameters.dense_input_dim')
         sparse_input_slot = config.get('hyper_parameters.sparse_inputs_slots')
         reduction = config.get("hyper_parameters.reduction")
         dnn_layers_size = config.get("hyper_parameters.dnn_layers_size")
+        dense_dnn_layers_size = config.get("hyper_parameters.dense_dnn_layers_size")
 
-        fat_deepffm_model = net.FAT_DeepFFMLayer(sparse_feature_number, sparse_feature_dim,
+        fat_deepffm_model = net.FAT_DeepFFMLayer(sparse_feature_number,
+                                                 sparse_feature_dim,
                                                  dense_feature_dim,
-                                                 sparse_input_slot - 1 + dense_feature_dim,
+                                                 sparse_input_slot + 1,
                                                  reduction,
-                                                 dnn_layers_size)
+                                                 dnn_layers_size,
+                                                 dense_dnn_layers_size + [sparse_feature_dim * (sparse_input_slot + 1)])
 
         return fat_deepffm_model
 
