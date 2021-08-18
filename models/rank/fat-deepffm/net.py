@@ -156,7 +156,7 @@ class CENet(nn.Layer):
 
         # (b, n, n*k) <- (b, n, n, k) * (b, n, n, 1)
         aem = paddle.reshape(paddle.multiply(paddle.reshape(inputs, shape=(B, N, N, -1)),
-                                             paddle.reshape(s, shape=(B, N, -1))),
+                                             paddle.reshape(s, shape=(B, N, N, -1))),
                              shape=(B, N, -1))
 
         return aem
