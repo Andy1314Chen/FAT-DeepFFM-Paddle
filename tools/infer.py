@@ -38,6 +38,8 @@ def parse_args():
     parser = argparse.ArgumentParser(description='paddle-rec run')
     parser.add_argument("-m", "--config_yaml", type=str)
     parser.add_argument("-o", "--opt", nargs='*', type=str)
+    parser.add_argument("-s", "--start", type=int, default=-1, help="infer_start_epoch")
+    parser.add_argument("-e", "--end", type=int, default=-1, help="infer_end_epoch")
     args = parser.parse_args()
     args.abs_dir = os.path.dirname(os.path.abspath(args.config_yaml))
     args.config_yaml = get_abs_model(args.config_yaml)
@@ -69,8 +71,8 @@ def main(args):
     print_interval = config.get("runner.print_interval", None)
     infer_batch_size = config.get("runner.infer_batch_size", None)
     model_load_path = config.get("runner.infer_load_path", "model_output")
-    start_epoch = config.get("runner.infer_start_epoch", 0)
-    end_epoch = config.get("runner.infer_end_epoch", 10)
+    start_epoch = config.get("runner.infer_start_epoch", 0) if args.start == -1 else args.start
+    end_epoch = config.get("runner.infer_end_epoch", 10) if args.end == -1 else args.end
 
     logger.info("**************common.configs**********")
     logger.info(

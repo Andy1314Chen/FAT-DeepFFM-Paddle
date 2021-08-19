@@ -38,6 +38,8 @@ def parse_args():
     parser = argparse.ArgumentParser(description='paddle-rec run')
     parser.add_argument("-m", "--config_yaml", type=str)
     parser.add_argument("-o", "--opt", nargs='*', type=str)
+    parser.add_argument("-i", "--model_init_path", type=str, help="model init path")
+    parser.add_argument("-e", "--epochs", type=int, default=-1, help="epochs")
     args = parser.parse_args()
     args.abs_dir = os.path.dirname(os.path.abspath(args.config_yaml))
     args.config_yaml = get_abs_model(args.config_yaml)
@@ -66,11 +68,11 @@ def main(args):
     use_xpu = config.get("runner.use_xpu", False)
     use_visual = config.get("runner.use_visual", False)
     train_data_dir = config.get("runner.train_data_dir", None)
-    epochs = config.get("runner.epochs", None)
+    epochs = config.get("runner.epochs", None) if args.epochs == -1 else args.epochs
     print_interval = config.get("runner.print_interval", None)
     train_batch_size = config.get("runner.train_batch_size", None)
     model_save_path = config.get("runner.model_save_path", "model_output")
-    model_init_path = config.get("runner.model_init_path", None)
+    model_init_path = config.get("runner.model_init_path", None) if args.model_init_path is None else args.model_init_path
     use_fleet = config.get("runner.use_fleet", False)
 
     logger.info("**************common.configs**********")
