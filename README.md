@@ -1,42 +1,39 @@
-## DIFM
+## FAT-DeepFFM
 
 ### 一、简介
 
-本项目是基于 PaddleRec 框架对 DIFM CTR 预估算法进行复现。
+本项目是基于 PaddleRec 框架对 FAT-DeepFFM CTR 预估算法进行复现。
 
-论文：[A Dual Input-aware Factorization Machine for CTR Prediction](https://www.ijcai.org/Proceedings/2020/0434.pdf)
+论文：[FAT-DeepFFM: Field Attentive Deep Field-aware Factorization Machine](https://arxiv.org/abs/1905.06336)
 
-![DIFM](https://tva1.sinaimg.cn/large/008i3skNly1gtffgzgk1bj30kq0e8wfz.jpg)
+![FAT-DeepFFM 网络结构](https://tva1.sinaimg.cn/large/008i3skNly1gtn0ys467uj610i0u0tc102.jpg)
 
-上图为 DIFM 的网络结构图，paper 题目中所指的 Dual-FEN 为 `vector-wise` 和 `bit-wise`两个 Input-aware Factorization 模块, 一个是 bit-wise,
-一个是 vector-wise。只是维度上不同，实现的直觉是一样的。bit-wise 维度会对某一个 sparse embedding 向量内部彼此进行交叉，而 vector-wise 仅仅处理
-embedding 向量层次交叉。把 vector-wise FEN 模块去掉，DIFM 就退化为 IFM 模型了，该算法也是论文作者实验组的大作，其结构图如下：
+该模型是 FM 系列，属于 FM 的复杂变种，相比基础的 FM 算法，有 3 处改动：
+- 增加 Field 向量概念，变成 **F**FM 
+- FM 特征交叉后，经 DNN 增强泛化性，变成 **Deep**FFM
+- 参考 CV 领域特征提取网络 SENet, 在 Embedding Layer 和 FM Layer 之间增加 CENet, 进行特征筛选(去其糟粕，取其精华), 变成了 **FAT**-DeepFFM
 
-![IFM](https://tva1.sinaimg.cn/large/008i3skNly1gtffi72287j60ez0cwq3p02.jpg)
+结合上面 3 处改动，就可以很容易看清 FAT-DeepFFM 的网络结构及其学习步骤了：
 
-两类不同维度的 FEN(Factor Estimating Net) 作用都是一致的，即输出 Embedding Layer 相应向量的权重。举个例子，假设上游有 n 个 sparse features， 
-则 FEN 输出结果为 [a1, a2, ..., an]. 在 Reweighting Layer 中，对原始输入进行权重调整。最后输入到 FM 层进行特征交叉，输出预测结果。因此，总结两篇论文步骤如下：
+- sparse features 经由 Embedding Layer 查表得到 embedding 矩阵（这里不是向量了，因为增加了 Feature Field 的概念，每个 Field 都会对应一个向量）
+- 上述特征向量，经过 Attentive Embedding Matrix Layer。作者类似 SENet, 提出了一个 CENet 进行特征筛选，增强有用特征，弱化噪声
+- 处理好的特征输入 Feature Interaction Layer 进行特征交叉(就是 FFM 特征交叉，但比 FM 慢了好多。。。)
+- FFM 特征交叉后，经过 MLP 再次增强模型泛化性，输出预测概率
 
-- sparse features 经由 Embedding Layer 查表得到 embedding 向量，dense features 特征如何处理两篇论文都没提及；
-- sparse features 对应的一阶权重也可以通过 1 维 Embedding Layer 查找；
-- sparse embeddings 输入 FEN (bit-wise or vector-wise)，得到特征对应的权重 [a1, a2, ..., an]；
-- Reweighting Layer 根据上一步骤中的特征权重，对 sparse embeddings 进一步调整；
-- FM Layer 进行特征交叉，输出预测概率；
+还有个小改动，在进行 FMM 特征交叉时， 作者认为 Hadamard Product 要比 Inner Product 效果好。前者是输出一维向量，而点积得到的是标量，其实前者按维度求和
+就是点积。
 
+![](https://tva1.sinaimg.cn/large/008i3skNly1gtn1f69hlej61dy0a8gn402.jpg)
 
 ### 二、复现精度
 
-本项目实现了 IFM、 DIFM 以及在 IFM 基础上增加了 deep layer 用于处理 dense features, 记作 IFM-Plus 的三种模型.
-在 DIFM 论文中，两种算法在 Criteo 数据集的表现如下：
+![](https://tva1.sinaimg.cn/large/008i3skNly1gtn1istjtfj611p0u0n4102.jpg)
 
-![](https://tva1.sinaimg.cn/large/008i3skNly1gtfg698y4nj30bo06tdgp.jpg)
+上图中，`I` 代表了 FFM 中是使用 inner product, `H`就表示使用 hadamard product.
 
-本次 PaddlePaddle 论文复现赛要求在 PaddleRec Criteo 数据集上，DIFM 的复现精度为 AUC > 0.799. 
+本次 PaddlePaddle 论文复现赛要求在 Criteo 数据集上，FAT-DeepFFM 的复现精度为 AUC > 0.8099. 
 
 实际本项目复现精度为：
-- IFM：AUC = 0.8016
-- IFM-Plus: AUC = 0.8010
-- DIFM: AUC = 0.799941
 
 ### 三、数据集
 
@@ -50,10 +47,13 @@ embedding 向量层次交叉。把 vector-wise FEN 模块去掉，DIFM 就退化
 - train set: 4400, 0000 条
 - test set:   184, 0617 条
 
-P.S. 原论文所提及 Criteo 数据集为 Terabyte Criteo 数据集(即包含 1 亿条样本)，但作者并未使用全量数据，而是采样了连续 8 天数据进行训练和测试。
-这个量级是和 PaddleRec Criteo 数据集是一样的，因此复现过程中直接选择了 PaddleRec 提供的数据。 原文表述如下：
+不过作者对 Criteo 数据集进行了随机处理，按照 9：1 重新划分训练集和测试集，本项目遵循该部分操作。因此，训练集与测试集数据如下：
+- train set: 4125, 6555 条
+- test set:   458, 4061 条
 
-![数据集介绍](https://tva1.sinaimg.cn/large/008i3skNly1gtgdgteholj61g40e6af502.jpg)
+![数据集划分介绍](https://tva1.sinaimg.cn/large/008i3skNly1gtn1wdgt6rj616a0c042g02.jpg)
+
+P.S. Criteo 原始数据集是存在时序关系的，理论上为了避免数据穿越，应该将 last day 数据作为测试集的。但本项目复现过程中遵循原论文相同数据预处理。
 
 
 ### 四、环境依赖
@@ -115,41 +115,24 @@ if not os.path.exists('data/criteo/slot_test_data_full.tar.gz') or not os.path.e
 !cd /home/aistudio/work/rank/DIFM-Paddle && python -u tools/infer.py -m models/rank/difm/config_bigdata.yaml
 ```
 
-#### 4. 最优参数
-
-```
-  # 原文复现相关参数
-  att_factor_dim: 80
-  att_head_num: 16
-  fen_layers_size:  [256, 256, 27]
-  class: Adam
-  learning_rate: 0.001
-  train_batch_size: 2000
-  epochs: 2
-  
-  # 简单调节 train_batch_size 到 1024，AUC 可以由 0.799941 提升到 0.801587
-```
 ### 六、代码结构与详细说明
 
 代码结构遵循 PaddleRec 框架结构
 ```
 |--models
   |--rank
-    |--difm                   # 本项目核心代码
+    |--fat-deepffm            # 本项目核心代码
       |--data                 # 采样小数据集
       |--config.yaml          # 采样小数据集模型配置
       |--config_bigdata.yaml  # Kaggle Criteo 全量数据集模型配置
-      |--criteo_reader.py     # dataset加载类            
+      |--criteo_reader.py     # dataset加载类         
+      |--download_data.sh     # 数据下载及训练集划分脚本  
       |--dygraph_model.py     # PaddleRec 动态图模型训练类
-      |--net.py               # difm 核心算法代码，包括 difm 组网、ifm 组网等
+      |--net.py               # fat-deepffm 核心算法代码
 |--tools                      # PaddleRec 工具类
+      |--train_and_eval.py    # 对 PaddleRec 框架进行了修改，支持 train 和 infer 交替执行(trainer.py 和 infer.py 源码也进行了微改动）
+      |--...
 |--LICENSE                    # 项目 LICENSE
 |--README.md                  # readme
 |--run.sh                     # 项目执行脚本(需在 aistudio notebook 中运行)
 ```
-
-### 七、复现记录
-1. 参考 PaddleRec 中 FM， 实现 IFM 模型，全量 Criteo 测试集上 AUC = 0.8016；
-2. 在 IFM 模型基础上，增加 dnn layer 处理 dense features, 全量 Criteo 测试集上 AUC = 0.8010；
-3. 在 IFM 模型基础上，增加 Multi-Head Self Attention，实现 DIFM；0.799941；
-4. 增加 Multi-Head Self Attention 模块后，会导致模型显著过拟合，需要进一步细致调参，本项目参数直接参考论文默认参数，并未进行细粒度参数调优；

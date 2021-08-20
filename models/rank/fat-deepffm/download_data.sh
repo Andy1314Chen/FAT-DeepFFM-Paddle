@@ -26,6 +26,12 @@ mv slot_train_data_full/*_split1 test
 mv slot_test_data_full/*_split0 train
 mv slot_train_data_full/*_split0 train
 
+for file in `ls ./train | shuf -n 50`
+do
+    echo $file
+    cp train/$file train/$file"_copy"
+done
+
 rm -rf slot_test_data_full slot_train_data_full
 mv test slot_test_data_full
 mv train slot_train_data_full
