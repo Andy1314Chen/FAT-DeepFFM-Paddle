@@ -103,7 +103,7 @@ def create_data_loader(config, place, mode="train"):
     reader_class = import_module(reader_path)
     dataset = reader_class.RecDataset(file_list, config=config)
     loader = DataLoader(
-        dataset, batch_size=batch_size, places=place, drop_last=True)
+        dataset, batch_size=batch_size, places=place, drop_last=True, num_workers=2)
     return loader
 
 
