@@ -129,7 +129,6 @@ class CENet(nn.Layer):
         self.mlp = MLPLayer(input_shape=self.sparse_field_num,
                             units_list=[self.reduced_num_fields, self.sparse_field_num],
                             last_action="relu")
-        # 1*1 conv 可以转换为全链接实现
         self.conv1d = paddle.create_parameter(
                             shape=[self.sparse_feature_dim * sparse_field_num, sparse_field_num],
                             dtype='float32',
