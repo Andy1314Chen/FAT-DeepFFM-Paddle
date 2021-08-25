@@ -18,16 +18,16 @@ runner:
   use_gpu: True
   use_auc: True
   train_batch_size: 2048
-  epochs: 3
+  epochs: 1
   print_interval: 16
-  #model_init_path: "output_model/0" # init model
+  # model_init_path: "output_model_fat_deepffm/0" # init model
   model_save_path: "output_model_fat_deepffm"
   test_data_dir: "/home/aistudio/data/criteo/slot_test_data_full"
   infer_reader_path: "criteo_reader" # importlib format
   infer_batch_size: 2048
   infer_load_path: "output_model_fat_deepffm"
   infer_start_epoch: 0
-  infer_end_epoch: 3
+  infer_end_epoch: 1
 
 # hyper parameters of user-defined network
 hyper_parameters:
@@ -42,5 +42,5 @@ hyper_parameters:
   sparse_feature_dim: 10
   dense_input_dim: 13
   reduction: 1
-  dnn_layers_size: [512, 256, 1]
-  dense_dnn_layers_size: [256, 64]
+  dnn_layers_size: [1600, 1600, 1600, 1]
+  dense_dnn_layers_size: [512, 256, 64]

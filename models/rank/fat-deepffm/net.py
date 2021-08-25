@@ -99,7 +99,7 @@ class FAT_DeepFFMLayer(nn.Layer):
             reduction=self.reduction,
             dnn_layers_size=self.dnn_layers_size,
             dense_dnn_layers_size=self.dense_dnn_layers_size,
-            is_hadamard_product=False
+            is_hadamard_product=True
         )
 
         self.bias = paddle.create_parameter(

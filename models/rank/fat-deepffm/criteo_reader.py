@@ -14,8 +14,9 @@
 
 from __future__ import print_function
 import numpy as np
+import math
 
-from paddle.io import IterableDataset
+from paddle.io import IterableDataset, get_worker_info
 
 
 class RecDataset(IterableDataset):
@@ -23,6 +24,8 @@ class RecDataset(IterableDataset):
         super(RecDataset, self).__init__()
         self.file_list = file_list
         self.init()
+        self.start = 0
+        self.end = len(file_list)
 
     def init(self):
         from operator import mul
@@ -40,9 +43,22 @@ class RecDataset(IterableDataset):
         self.padding = padding
 
     def __iter__(self):
+        worker_info = get_worker_info()
+        if worker_info is None:
+            iter_start = self.start
+            iter_end = self.end
+        else:
+            per_worker = int(
+                math.ceil((self.end - self.start) / float(
+                    worker_info.num_workers)))
+            worker_id = worker_info.id
+            iter_start = self.start + worker_id * per_worker
+            iter_end = min(iter_start + per_worker, self.end)
+
         full_lines = []
         self.data = []
-        for file in self.file_list:
+        for file in self.file_list[iter_start:iter_end]:
+            print("*"*5 + file +"*"*5)
             with open(file, "r") as rf:
                 for l in rf:
                     line = l.strip().split(" ")
@@ -79,3 +95,4 @@ class RecDataset(IterableDataset):
                         np.array(output[-1][1]).astype("float32"))
                     # list
                     yield output_list
+
