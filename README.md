@@ -33,9 +33,10 @@
 
 本次 PaddlePaddle 论文复现赛要求在 Criteo 数据集上，FAT-DeepFFM 的复现精度为 AUC > 0.8099. 
 
-实际本项目复现精度为：AUC > 0.8088, 与论文精度存在 0.14% 的相对差异. 在不改变原论文模型结构及主要参数的情况下, 认为差异主要来自于以下三点:
+实际本项目复现精度为：AUC > 0.8090, 与论文精度存在 0.1% 的相对差异. 与文中对比实验`DeepFFM-I`、`DeepFFM-H`、`xDeepFM`相当, 稍低于最优结果.
+在不改变原论文模型结构及主要参数的情况下, 认为差异主要来自于以下三点:
 
-1. 数据集划分. 原论文是全量数据集 shuffle 之后随机 9: 1 切分, 本项目因 AI-Studio 内存限制, 是对 PaddleRec Criteo 各个子文件进行 9:1 数据切分;
+1. 数据集划分. 原论文是全量数据集 shuffle 之后随机 9: 1 切分, 本项目因 AI-Studio 内存限制, 是对 PaddleRec Criteo 各子文件进行 9:1 数据切分;
 2. 训练方式. 原论文是单机多卡训练, 本项目是单机单卡;
 3. 模型结构及核心参数. 本项目模型结构与原论文保持一致, 核心参数亦参考文中实验设置, 未进一步细致调参;
 
@@ -77,7 +78,7 @@ P.S. Criteo 原始数据集是存在时序关系的，理论上为了避免数�
 AIStudio 项目链接：[https://aistudio.baidu.com/studio/project/partial/verify/2281174/3987013dd88e45ce828d3b9a3f2d24a9](https://aistudio.baidu.com/studio/project/partial/verify/2281174/3987013dd88e45ce828d3b9a3f2d24a9), 可以 fork 一下。
 
 #### 1. AI-Studio 快速复现步骤
-(约 6 个小时，可以直接在 notebook 切换版本加载预训练模型文件)
+(约 3.5 个小时，也可以加载预训练模型文件快速验证)
 
 ```
 ################# Step 1, git clone code ################
@@ -93,7 +94,7 @@ if not os.path.isdir('work/rank/FAT-DeepFFM-Paddle'):
 # 当前处于 /home/aistudio 目录，数据存放在 /home/data/criteo 中
 
 import os
-os.makedirs('data/criteo', exist_ok=True)
+os.makedir('data/criteo', exist_ok=True)
 
 # Download  data & Split data
 !cd data/criteo && sh /home/aistudio/work/rank/FAT-DeepFFM-Paddle/models/rank/fat-deepffm/download_data.sh
@@ -108,14 +109,13 @@ os.makedirs('data/criteo', exist_ok=True)
 #### 2. criteo slot_test_data_full 验证集结果
 ```
 ...
-2021-08-14 11:53:10,026 - INFO - epoch: 0 done, auc: 0.799622, epoch time: 261.84 s
-2021-08-14 11:57:32,841 - INFO - epoch: 1 done, auc: 0.799941, epoch time: 262.81 s
+
 ```
 
 #### 3. 使用预训练模型进行预测
 - ！！注意 config_bigdata.yaml 的 `use_gpu` 配置需要与当前运行环境保存一致 
 ```
-!cd /home/aistudio/work/rank/FAT-DeepFFM-Paddle && python -u tools/infer.py -m models/rank/difm/config_bigdata.yaml
+!cd /home/aistudio/work/rank/FAT-DeepFFM-Paddle && python -u tools/infer.py -m models/rank/fat-deepffm/config_bigdata.yaml
 ```
 
 ### 六、代码结构与详细说明
@@ -143,7 +143,7 @@ os.makedirs('data/criteo', exist_ok=True)
 ### 七、复现记录
 1. 数据集划分方式十分重要!! 最初按照经验, 采取依据时序划分数据, AUC 始终上不了 0.8, 一直怀疑自己代码写错了, 反复检查....
 2. 仔细核对了作者两篇论文, 都采取的是随机划分训练集与验证集方式, 虽然难以理解, 但还是继续复现之路了;
-3. 参考论文实验设置, 模型结构与核心参数均保持不变, 但实际精度还是差了一丢丢, 怀疑仍是数据集划分方式和单机多卡训练方式导致的.
+3. 参考论文实验设置, 模型结构与核心参数均保持不变, 但实际精度还是差了一丢丢, 怀疑仍是数据集划分方式和单机多卡训练方式导致的;
 4. FAT-DeepFFM 是在 FFM 基础进行改动的, 相对 FM, 时间复杂度要高很多, 本项目在 PaddleRec 基础上增加了多进程数据加载及train_and_eval模式, 可以更快的炼丹...
 
 
