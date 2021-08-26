@@ -42,5 +42,5 @@ hyper_parameters:
   sparse_feature_dim: 10
   dense_input_dim: 13
   reduction: 1
-  dnn_layers_size: [512, 256, 1]
+  dnn_layers_size: [1600, 1600, 1]
   dense_dnn_layers_size: [256, 64]

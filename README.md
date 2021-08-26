@@ -33,7 +33,7 @@
 
 本次 PaddlePaddle 论文复现赛要求在 Criteo 数据集上，FAT-DeepFFM 的复现精度为 AUC > 0.8099. 
 
-实际本项目复现精度为：AUC > 0.8085(依赖数据随机划分上下浮动), 与论文精度存在 0.1% 的相对差异. 与文中对比实验`DeepFFM-I`、`DeepFFM-H`、`xDeepFM`相当, 稍低于最优结果.
+实际本项目复现精度为：AUC > 0.8092(依赖数据随机划分上下浮动), 与论文精度存在 0.1% 的相对差异. 与文中对比实验`DeepFFM-I`、`DeepFFM-H`、`xDeepFM`相当, 稍低于最优结果.
 在不改变原论文模型结构及主要参数的情况下, 认为差异主要来自于以下三点:
 
 1. 数据集划分. 原论文是全量数据集 shuffle 之后随机 9: 1 切分, 本项目因 AI-Studio 内存限制, 是对 PaddleRec Criteo 各子文件进行 9:1 数据切分;
@@ -109,13 +109,12 @@ os.makedir('data/criteo', exist_ok=True)
 #### 2. criteo slot_test_data_full 验证集结果
 ```
 ...
-2021-08-26 08:47:08,282 - INFO - epoch: 0, batch_id: 1968, auc: 0.808259, avg_reader_cost: 0.03984 sec, avg_batch_cost: 0.09646 sec, avg_samples: 2048.00000, ips: 21182.11 ins/s
-*****/home/aistudio/data/criteo/slot_test_data_full/part-143_split1*****
-*****/home/aistudio/data/criteo/slot_test_data_full/part-177_split1*****
-2021-08-26 08:47:09,772 - INFO - epoch: 0, batch_id: 1984, auc: 0.808261, avg_reader_cost: 0.03550 sec, avg_batch_cost: 0.09286 sec, avg_samples: 2048.00000, ips: 22002.02 ins/s
 *****/home/aistudio/data/criteo/slot_test_data_full/part-142_split1*****
-2021-08-26 08:47:11,407 - INFO - epoch: 0, batch_id: 2000, auc: 0.808286, avg_reader_cost: 0.04201 sec, avg_batch_cost: 0.10199 sec, avg_samples: 2048.00000, ips: 20037.43 ins/s
-2021-08-26 08:47:12,595 - INFO - epoch: 0 done, auc: 0.808277, epoch time: 185.20 s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-177_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-143_split1*****
+2021-08-25 23:44:55,178 - INFO - epoch: 0, batch_id: 2208, auc: 0.809179, avg_reader_cost: 0.02896 sec, avg_batch_cost: 0.09868 sec, avg_samples: 2048.00000, ips: 20703.08 ins/s
+2021-08-25 23:44:56,671 - INFO - epoch: 0, batch_id: 2224, auc: 0.809220, avg_reader_cost: 0.02323 sec, avg_batch_cost: 0.09307 sec, avg_samples: 2048.00000, ips: 21951.77 ins/s
+2021-08-25 23:44:57,863 - INFO - epoch: 0 done, auc: 0.809233, epoch time: 213.54 s
 ```
 
 #### 3. 使用预训练模型进行预测
