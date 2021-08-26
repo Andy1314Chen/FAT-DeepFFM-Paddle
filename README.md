@@ -33,7 +33,7 @@
 
 本次 PaddlePaddle 论文复现赛要求在 Criteo 数据集上，FAT-DeepFFM 的复现精度为 AUC > 0.8099. 
 
-实际本项目复现精度为：AUC > 0.8090, 与论文精度存在 0.1% 的相对差异. 与文中对比实验`DeepFFM-I`、`DeepFFM-H`、`xDeepFM`相当, 稍低于最优结果.
+实际本项目复现精度为：AUC > 0.8085(依赖数据随机划分上下浮动), 与论文精度存在 0.1% 的相对差异. 与文中对比实验`DeepFFM-I`、`DeepFFM-H`、`xDeepFM`相当, 稍低于最优结果.
 在不改变原论文模型结构及主要参数的情况下, 认为差异主要来自于以下三点:
 
 1. 数据集划分. 原论文是全量数据集 shuffle 之后随机 9: 1 切分, 本项目因 AI-Studio 内存限制, 是对 PaddleRec Criteo 各子文件进行 9:1 数据切分;
@@ -75,7 +75,7 @@ P.S. Criteo 原始数据集是存在时序关系的，理论上为了避免数�
 
 该小节操作建议在百度 AI-Studio NoteBook 中进行执行。
 
-AIStudio 项目链接：[https://aistudio.baidu.com/studio/project/partial/verify/2281174/3987013dd88e45ce828d3b9a3f2d24a9](https://aistudio.baidu.com/studio/project/partial/verify/2281174/3987013dd88e45ce828d3b9a3f2d24a9), 可以 fork 一下。
+AIStudio 项目链接：[项目“Paddle-FAT-DeepFFM”共享链接(有效期三天)：https://aistudio.baidu.com/studio/project/partial/verify/2306541/3f562fa53a344c52a14daedbea511125](项目“Paddle-FAT-DeepFFM”共享链接(有效期三天)：https://aistudio.baidu.com/studio/project/partial/verify/2306541/3f562fa53a344c52a14daedbea511125), 可以 fork 一下。
 
 #### 1. AI-Studio 快速复现步骤
 (约 3.5 个小时，也可以加载预训练模型文件快速验证)
@@ -109,7 +109,13 @@ os.makedir('data/criteo', exist_ok=True)
 #### 2. criteo slot_test_data_full 验证集结果
 ```
 ...
-
+2021-08-26 08:47:08,282 - INFO - epoch: 0, batch_id: 1968, auc: 0.808259, avg_reader_cost: 0.03984 sec, avg_batch_cost: 0.09646 sec, avg_samples: 2048.00000, ips: 21182.11 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-143_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-177_split1*****
+2021-08-26 08:47:09,772 - INFO - epoch: 0, batch_id: 1984, auc: 0.808261, avg_reader_cost: 0.03550 sec, avg_batch_cost: 0.09286 sec, avg_samples: 2048.00000, ips: 22002.02 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-142_split1*****
+2021-08-26 08:47:11,407 - INFO - epoch: 0, batch_id: 2000, auc: 0.808286, avg_reader_cost: 0.04201 sec, avg_batch_cost: 0.10199 sec, avg_samples: 2048.00000, ips: 20037.43 ins/s
+2021-08-26 08:47:12,595 - INFO - epoch: 0 done, auc: 0.808277, epoch time: 185.20 s
 ```
 
 #### 3. 使用预训练模型进行预测
