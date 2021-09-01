@@ -1,0 +1,382 @@
+2021-08-26 23:41:18,910 - INFO - **************common.configs**********
+2021-08-26 23:41:18,911 - INFO - use_gpu: True, use_xpu: False, use_visual: False, infer_batch_size: 2048, test_data_dir: /home/aistudio/data/criteo/slot_test_data_full, start_epoch: 0, end_epoch: 1, print_interval: 16, model_load_path: output_model_fat_deepffm
+2021-08-26 23:41:18,911 - INFO - **************common.configs**********
+W0826 23:41:18.912444 18658 device_context.cc:404] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 10.1, Runtime API Version: 10.1
+W0826 23:41:18.918037 18658 device_context.cc:422] device: 0, cuDNN Version: 7.6.
+2021-08-26 23:41:24,317 - INFO - read data
+2021-08-26 23:41:24,318 - INFO - reader path:criteo_reader
+2021-08-26 23:41:24,320 - INFO - load model epoch 0
+2021-08-26 23:41:24,320 - INFO - start load model from output_model_fat_deepffm/0
+*****/home/aistudio/data/criteo/slot_test_data_full/part-0_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-120_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-215_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-151_split1*****
+2021-08-26 23:41:30,037 - INFO - epoch: 0, batch_id: 0, auc: 0.814959, avg_reader_cost: 0.05115 sec, avg_batch_cost: 0.05774 sec, avg_samples: 2048.00000, ips: 5731.89 ins/s
+2021-08-26 23:41:31,439 - INFO - epoch: 0, batch_id: 16, auc: 0.814791, avg_reader_cost: 0.00186 sec, avg_batch_cost: 0.08735 sec, avg_samples: 2048.00000, ips: 23382.47 ins/s
+2021-08-26 23:41:32,857 - INFO - epoch: 0, batch_id: 32, auc: 0.812601, avg_reader_cost: 0.00188 sec, avg_batch_cost: 0.08842 sec, avg_samples: 2048.00000, ips: 23102.99 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-19_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-226_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-8_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-214_split1*****
+2021-08-26 23:41:34,311 - INFO - epoch: 0, batch_id: 48, auc: 0.812635, avg_reader_cost: 0.00580 sec, avg_batch_cost: 0.09060 sec, avg_samples: 2048.00000, ips: 22538.93 ins/s
+2021-08-26 23:41:36,150 - INFO - epoch: 0, batch_id: 64, auc: 0.810593, avg_reader_cost: 0.00391 sec, avg_batch_cost: 0.11465 sec, avg_samples: 2048.00000, ips: 17826.88 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-154_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-229_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-141_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-148_split1*****
+2021-08-26 23:41:37,752 - INFO - epoch: 0, batch_id: 80, auc: 0.810478, avg_reader_cost: 0.00415 sec, avg_batch_cost: 0.09991 sec, avg_samples: 2048.00000, ips: 20451.31 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-152_split1*****
+2021-08-26 23:41:39,205 - INFO - epoch: 0, batch_id: 96, auc: 0.810810, avg_reader_cost: 0.00620 sec, avg_batch_cost: 0.09054 sec, avg_samples: 2048.00000, ips: 22559.95 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-75_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-180_split1*****
+2021-08-26 23:41:40,637 - INFO - epoch: 0, batch_id: 112, auc: 0.811163, avg_reader_cost: 0.00407 sec, avg_batch_cost: 0.08922 sec, avg_samples: 2048.00000, ips: 22894.54 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-162_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-183_split1*****
+2021-08-26 23:41:42,051 - INFO - epoch: 0, batch_id: 128, auc: 0.811034, avg_reader_cost: 0.00239 sec, avg_batch_cost: 0.08815 sec, avg_samples: 2048.00000, ips: 23169.49 ins/s
+2021-08-26 23:41:43,556 - INFO - epoch: 0, batch_id: 144, auc: 0.810530, avg_reader_cost: 0.00899 sec, avg_batch_cost: 0.09373 sec, avg_samples: 2048.00000, ips: 21783.74 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-170_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-81_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-53_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-82_split1*****
+2021-08-26 23:41:45,027 - INFO - epoch: 0, batch_id: 160, auc: 0.810053, avg_reader_cost: 0.00193 sec, avg_batch_cost: 0.09169 sec, avg_samples: 2048.00000, ips: 22278.54 ins/s
+2021-08-26 23:41:46,469 - INFO - epoch: 0, batch_id: 176, auc: 0.810264, avg_reader_cost: 0.00272 sec, avg_batch_cost: 0.08988 sec, avg_samples: 2048.00000, ips: 22726.37 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-164_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-206_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-137_split1*****
+2021-08-26 23:41:47,939 - INFO - epoch: 0, batch_id: 192, auc: 0.810558, avg_reader_cost: 0.00652 sec, avg_batch_cost: 0.09159 sec, avg_samples: 2048.00000, ips: 22305.99 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-125_split1*****
+2021-08-26 23:41:49,399 - INFO - epoch: 0, batch_id: 208, auc: 0.810672, avg_reader_cost: 0.00768 sec, avg_batch_cost: 0.09103 sec, avg_samples: 2048.00000, ips: 22438.10 ins/s
+2021-08-26 23:41:50,849 - INFO - epoch: 0, batch_id: 224, auc: 0.810761, avg_reader_cost: 0.00052 sec, avg_batch_cost: 0.09035 sec, avg_samples: 2048.00000, ips: 22609.78 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-118_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-117_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-194_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-46_split1*****
+2021-08-26 23:41:52,301 - INFO - epoch: 0, batch_id: 240, auc: 0.810859, avg_reader_cost: 0.00319 sec, avg_batch_cost: 0.09048 sec, avg_samples: 2048.00000, ips: 22575.50 ins/s
+2021-08-26 23:41:53,807 - INFO - epoch: 0, batch_id: 256, auc: 0.810878, avg_reader_cost: 0.00725 sec, avg_batch_cost: 0.09387 sec, avg_samples: 2048.00000, ips: 21752.35 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-28_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-21_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-111_split1*****
+2021-08-26 23:41:55,258 - INFO - epoch: 0, batch_id: 272, auc: 0.810925, avg_reader_cost: 0.00144 sec, avg_batch_cost: 0.09042 sec, avg_samples: 2048.00000, ips: 22592.40 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-130_split1*****
+2021-08-26 23:41:56,700 - INFO - epoch: 0, batch_id: 288, auc: 0.810722, avg_reader_cost: 0.00143 sec, avg_batch_cost: 0.08987 sec, avg_samples: 2048.00000, ips: 22731.21 ins/s
+2021-08-26 23:41:58,131 - INFO - epoch: 0, batch_id: 304, auc: 0.810436, avg_reader_cost: 0.00410 sec, avg_batch_cost: 0.08917 sec, avg_samples: 2048.00000, ips: 22905.08 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-16_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-136_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-159_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-4_split1*****
+2021-08-26 23:41:59,597 - INFO - epoch: 0, batch_id: 320, auc: 0.810441, avg_reader_cost: 0.00353 sec, avg_batch_cost: 0.08987 sec, avg_samples: 2048.00000, ips: 22355.68 ins/s
+2021-08-26 23:42:01,035 - INFO - epoch: 0, batch_id: 336, auc: 0.810438, avg_reader_cost: 0.00246 sec, avg_batch_cost: 0.08958 sec, avg_samples: 2048.00000, ips: 22791.36 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-112_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-113_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-165_split1*****
+2021-08-26 23:42:02,531 - INFO - epoch: 0, batch_id: 352, auc: 0.810493, avg_reader_cost: 0.00397 sec, avg_batch_cost: 0.09323 sec, avg_samples: 2048.00000, ips: 21912.08 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-90_split1*****
+2021-08-26 23:42:04,004 - INFO - epoch: 0, batch_id: 368, auc: 0.810442, avg_reader_cost: 0.00194 sec, avg_batch_cost: 0.09176 sec, avg_samples: 2048.00000, ips: 22257.62 ins/s
+2021-08-26 23:42:05,498 - INFO - epoch: 0, batch_id: 384, auc: 0.810604, avg_reader_cost: 0.00062 sec, avg_batch_cost: 0.09160 sec, avg_samples: 2048.00000, ips: 21940.90 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-171_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-36_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-15_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-49_split1*****
+2021-08-26 23:42:06,959 - INFO - epoch: 0, batch_id: 400, auc: 0.810622, avg_reader_cost: 0.00052 sec, avg_batch_cost: 0.09106 sec, avg_samples: 2048.00000, ips: 22433.41 ins/s
+2021-08-26 23:42:08,438 - INFO - epoch: 0, batch_id: 416, auc: 0.810609, avg_reader_cost: 0.00047 sec, avg_batch_cost: 0.09218 sec, avg_samples: 2048.00000, ips: 22161.43 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-132_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-189_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-35_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-134_split1*****
+2021-08-26 23:42:09,872 - INFO - epoch: 0, batch_id: 432, auc: 0.810541, avg_reader_cost: 0.00047 sec, avg_batch_cost: 0.08943 sec, avg_samples: 2048.00000, ips: 22842.01 ins/s
+2021-08-26 23:42:11,330 - INFO - epoch: 0, batch_id: 448, auc: 0.810516, avg_reader_cost: 0.00047 sec, avg_batch_cost: 0.09087 sec, avg_samples: 2048.00000, ips: 22477.97 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-89_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-97_split1*****
+2021-08-26 23:42:12,765 - INFO - epoch: 0, batch_id: 464, auc: 0.810460, avg_reader_cost: 0.00265 sec, avg_batch_cost: 0.08937 sec, avg_samples: 2048.00000, ips: 22846.65 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-84_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-12_split1*****
+2021-08-26 23:42:14,244 - INFO - epoch: 0, batch_id: 480, auc: 0.810434, avg_reader_cost: 0.00147 sec, avg_batch_cost: 0.09215 sec, avg_samples: 2048.00000, ips: 22159.62 ins/s
+2021-08-26 23:42:15,700 - INFO - epoch: 0, batch_id: 496, auc: 0.810396, avg_reader_cost: 0.00172 sec, avg_batch_cost: 0.09069 sec, avg_samples: 2048.00000, ips: 22526.64 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-203_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-56_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-48_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-40_split1*****
+2021-08-26 23:42:17,208 - INFO - epoch: 0, batch_id: 512, auc: 0.810382, avg_reader_cost: 0.00136 sec, avg_batch_cost: 0.09394 sec, avg_samples: 2048.00000, ips: 21742.74 ins/s
+2021-08-26 23:42:18,658 - INFO - epoch: 0, batch_id: 528, auc: 0.810324, avg_reader_cost: 0.00045 sec, avg_batch_cost: 0.09036 sec, avg_samples: 2048.00000, ips: 22605.62 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-156_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-100_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-138_split1*****
+2021-08-26 23:42:20,099 - INFO - epoch: 0, batch_id: 544, auc: 0.810226, avg_reader_cost: 0.00043 sec, avg_batch_cost: 0.08982 sec, avg_samples: 2048.00000, ips: 22739.34 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-78_split1*****
+2021-08-26 23:42:21,542 - INFO - epoch: 0, batch_id: 560, auc: 0.810198, avg_reader_cost: 0.00144 sec, avg_batch_cost: 0.08995 sec, avg_samples: 2048.00000, ips: 22711.13 ins/s
+2021-08-26 23:42:23,041 - INFO - epoch: 0, batch_id: 576, auc: 0.810135, avg_reader_cost: 0.00440 sec, avg_batch_cost: 0.09344 sec, avg_samples: 2048.00000, ips: 21864.44 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-86_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-207_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-166_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-174_split1*****
+2021-08-26 23:42:24,539 - INFO - epoch: 0, batch_id: 592, auc: 0.810154, avg_reader_cost: 0.00574 sec, avg_batch_cost: 0.09339 sec, avg_samples: 2048.00000, ips: 21875.36 ins/s
+2021-08-26 23:42:26,238 - INFO - epoch: 0, batch_id: 608, auc: 0.810129, avg_reader_cost: 0.00061 sec, avg_batch_cost: 0.10589 sec, avg_samples: 2048.00000, ips: 19296.55 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-18_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-102_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-20_split1*****
+2021-08-26 23:42:27,968 - INFO - epoch: 0, batch_id: 624, auc: 0.810122, avg_reader_cost: 0.00057 sec, avg_batch_cost: 0.10789 sec, avg_samples: 2048.00000, ips: 18942.13 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-219_split1*****
+2021-08-26 23:42:29,370 - INFO - epoch: 0, batch_id: 640, auc: 0.809925, avg_reader_cost: 0.00046 sec, avg_batch_cost: 0.08736 sec, avg_samples: 2048.00000, ips: 23381.55 ins/s
+2021-08-26 23:42:31,209 - INFO - epoch: 0, batch_id: 656, auc: 0.809872, avg_reader_cost: 0.00249 sec, avg_batch_cost: 0.11471 sec, avg_samples: 2048.00000, ips: 17818.51 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-221_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-192_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-47_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-99_split1*****
+2021-08-26 23:42:32,731 - INFO - epoch: 0, batch_id: 672, auc: 0.809852, avg_reader_cost: 0.00062 sec, avg_batch_cost: 0.09486 sec, avg_samples: 2048.00000, ips: 21536.56 ins/s
+2021-08-26 23:42:34,199 - INFO - epoch: 0, batch_id: 688, auc: 0.809731, avg_reader_cost: 0.00458 sec, avg_batch_cost: 0.09024 sec, avg_samples: 2048.00000, ips: 22326.81 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-129_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-198_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-93_split1*****
+2021-08-26 23:42:35,658 - INFO - epoch: 0, batch_id: 704, auc: 0.809619, avg_reader_cost: 0.00376 sec, avg_batch_cost: 0.09095 sec, avg_samples: 2048.00000, ips: 22460.44 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-216_split1*****
+2021-08-26 23:42:37,130 - INFO - epoch: 0, batch_id: 720, auc: 0.809560, avg_reader_cost: 0.00185 sec, avg_batch_cost: 0.09171 sec, avg_samples: 2048.00000, ips: 22265.82 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-217_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-108_split1*****
+2021-08-26 23:42:38,555 - INFO - epoch: 0, batch_id: 736, auc: 0.809707, avg_reader_cost: 0.00412 sec, avg_batch_cost: 0.08882 sec, avg_samples: 2048.00000, ips: 22999.44 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-45_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-64_split1*****
+2021-08-26 23:42:40,024 - INFO - epoch: 0, batch_id: 752, auc: 0.809653, avg_reader_cost: 0.00264 sec, avg_batch_cost: 0.09152 sec, avg_samples: 2048.00000, ips: 22320.20 ins/s
+2021-08-26 23:42:41,449 - INFO - epoch: 0, batch_id: 768, auc: 0.809596, avg_reader_cost: 0.00228 sec, avg_batch_cost: 0.08879 sec, avg_samples: 2048.00000, ips: 23001.11 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-52_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-127_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-92_split1*****
+2021-08-26 23:42:42,949 - INFO - epoch: 0, batch_id: 784, auc: 0.809505, avg_reader_cost: 0.00568 sec, avg_batch_cost: 0.09344 sec, avg_samples: 2048.00000, ips: 21848.36 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-95_split1*****
+2021-08-26 23:42:44,445 - INFO - epoch: 0, batch_id: 800, auc: 0.809457, avg_reader_cost: 0.00105 sec, avg_batch_cost: 0.09322 sec, avg_samples: 2048.00000, ips: 21911.51 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-135_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-42_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-140_split1*****
+2021-08-26 23:42:45,932 - INFO - epoch: 0, batch_id: 816, auc: 0.809383, avg_reader_cost: 0.00064 sec, avg_batch_cost: 0.09265 sec, avg_samples: 2048.00000, ips: 22050.05 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-34_split1*****
+2021-08-26 23:42:47,362 - INFO - epoch: 0, batch_id: 832, auc: 0.809399, avg_reader_cost: 0.00064 sec, avg_batch_cost: 0.08913 sec, avg_samples: 2048.00000, ips: 22906.92 ins/s
+2021-08-26 23:42:48,826 - INFO - epoch: 0, batch_id: 848, auc: 0.809441, avg_reader_cost: 0.00128 sec, avg_batch_cost: 0.09118 sec, avg_samples: 2048.00000, ips: 22401.24 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-145_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-195_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-105_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-73_split1*****
+2021-08-26 23:42:50,266 - INFO - epoch: 0, batch_id: 864, auc: 0.809452, avg_reader_cost: 0.00225 sec, avg_batch_cost: 0.08969 sec, avg_samples: 2048.00000, ips: 22763.07 ins/s
+2021-08-26 23:42:51,734 - INFO - epoch: 0, batch_id: 880, auc: 0.809477, avg_reader_cost: 0.00115 sec, avg_batch_cost: 0.09148 sec, avg_samples: 2048.00000, ips: 22331.42 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-167_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-80_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-197_split1*****
+2021-08-26 23:42:53,347 - INFO - epoch: 0, batch_id: 896, auc: 0.809451, avg_reader_cost: 0.00552 sec, avg_batch_cost: 0.10051 sec, avg_samples: 2048.00000, ips: 20324.25 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-6_split1*****
+2021-08-26 23:42:54,799 - INFO - epoch: 0, batch_id: 912, auc: 0.809423, avg_reader_cost: 0.00422 sec, avg_batch_cost: 0.09050 sec, avg_samples: 2048.00000, ips: 22570.51 ins/s
+2021-08-26 23:42:56,242 - INFO - epoch: 0, batch_id: 928, auc: 0.809382, avg_reader_cost: 0.00054 sec, avg_batch_cost: 0.08990 sec, avg_samples: 2048.00000, ips: 22717.65 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-2_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-179_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-123_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-193_split1*****
+2021-08-26 23:42:57,703 - INFO - epoch: 0, batch_id: 944, auc: 0.809377, avg_reader_cost: 0.00132 sec, avg_batch_cost: 0.09108 sec, avg_samples: 2048.00000, ips: 22428.38 ins/s
+2021-08-26 23:42:59,138 - INFO - epoch: 0, batch_id: 960, auc: 0.809415, avg_reader_cost: 0.00226 sec, avg_batch_cost: 0.08935 sec, avg_samples: 2048.00000, ips: 22850.97 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-87_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-74_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-122_split1*****
+2021-08-26 23:43:00,546 - INFO - epoch: 0, batch_id: 976, auc: 0.809472, avg_reader_cost: 0.00248 sec, avg_batch_cost: 0.08775 sec, avg_samples: 2048.00000, ips: 23277.78 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-96_split1*****
+2021-08-26 23:43:02,011 - INFO - epoch: 0, batch_id: 992, auc: 0.809401, avg_reader_cost: 0.00304 sec, avg_batch_cost: 0.09128 sec, avg_samples: 2048.00000, ips: 22381.76 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-109_split1*****
+2021-08-26 23:43:03,508 - INFO - epoch: 0, batch_id: 1008, auc: 0.809367, avg_reader_cost: 0.00208 sec, avg_batch_cost: 0.09331 sec, avg_samples: 2048.00000, ips: 21895.31 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-168_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-211_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-43_split1*****
+2021-08-26 23:43:04,959 - INFO - epoch: 0, batch_id: 1024, auc: 0.809433, avg_reader_cost: 0.00164 sec, avg_batch_cost: 0.09044 sec, avg_samples: 2048.00000, ips: 22589.73 ins/s
+2021-08-26 23:43:06,447 - INFO - epoch: 0, batch_id: 1040, auc: 0.809469, avg_reader_cost: 0.00254 sec, avg_batch_cost: 0.09277 sec, avg_samples: 2048.00000, ips: 22021.79 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-157_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-175_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-63_split1*****
+2021-08-26 23:43:07,865 - INFO - epoch: 0, batch_id: 1056, auc: 0.809445, avg_reader_cost: 0.00197 sec, avg_batch_cost: 0.08831 sec, avg_samples: 2048.00000, ips: 23130.89 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-33_split1*****
+2021-08-26 23:43:09,347 - INFO - epoch: 0, batch_id: 1072, auc: 0.809484, avg_reader_cost: 0.00569 sec, avg_batch_cost: 0.09238 sec, avg_samples: 2048.00000, ips: 22112.79 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-68_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-187_split1*****
+2021-08-26 23:43:10,798 - INFO - epoch: 0, batch_id: 1088, auc: 0.809520, avg_reader_cost: 0.00288 sec, avg_batch_cost: 0.08945 sec, avg_samples: 2048.00000, ips: 22583.11 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-218_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-202_split1*****
+2021-08-26 23:43:12,326 - INFO - epoch: 0, batch_id: 1104, auc: 0.809513, avg_reader_cost: 0.00602 sec, avg_batch_cost: 0.09520 sec, avg_samples: 2048.00000, ips: 21450.66 ins/s
+2021-08-26 23:43:13,766 - INFO - epoch: 0, batch_id: 1120, auc: 0.809498, avg_reader_cost: 0.00174 sec, avg_batch_cost: 0.08969 sec, avg_samples: 2048.00000, ips: 22773.66 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-115_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-153_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-22_split1*****
+2021-08-26 23:43:15,247 - INFO - epoch: 0, batch_id: 1136, auc: 0.809535, avg_reader_cost: 0.00199 sec, avg_batch_cost: 0.09231 sec, avg_samples: 2048.00000, ips: 22131.64 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-70_split1*****
+2021-08-26 23:43:16,657 - INFO - epoch: 0, batch_id: 1152, auc: 0.809553, avg_reader_cost: 0.00046 sec, avg_batch_cost: 0.08793 sec, avg_samples: 2048.00000, ips: 23231.01 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-44_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-27_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-222_split1*****
+2021-08-26 23:43:18,127 - INFO - epoch: 0, batch_id: 1168, auc: 0.809571, avg_reader_cost: 0.00426 sec, avg_batch_cost: 0.09157 sec, avg_samples: 2048.00000, ips: 22307.56 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-209_split1*****
+2021-08-26 23:43:19,553 - INFO - epoch: 0, batch_id: 1184, auc: 0.809531, avg_reader_cost: 0.00380 sec, avg_batch_cost: 0.08893 sec, avg_samples: 2048.00000, ips: 22970.67 ins/s
+2021-08-26 23:43:20,965 - INFO - epoch: 0, batch_id: 1200, auc: 0.809521, avg_reader_cost: 0.00173 sec, avg_batch_cost: 0.08794 sec, avg_samples: 2048.00000, ips: 23227.12 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-55_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-83_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-158_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-54_split1*****
+2021-08-26 23:43:22,460 - INFO - epoch: 0, batch_id: 1216, auc: 0.809491, avg_reader_cost: 0.00918 sec, avg_batch_cost: 0.09317 sec, avg_samples: 2048.00000, ips: 21925.78 ins/s
+2021-08-26 23:43:23,911 - INFO - epoch: 0, batch_id: 1232, auc: 0.809455, avg_reader_cost: 0.00110 sec, avg_batch_cost: 0.09044 sec, avg_samples: 2048.00000, ips: 22585.42 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-66_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-11_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-79_split1*****
+2021-08-26 23:43:25,512 - INFO - epoch: 0, batch_id: 1248, auc: 0.809422, avg_reader_cost: 0.00340 sec, avg_batch_cost: 0.09978 sec, avg_samples: 2048.00000, ips: 20477.36 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-101_split1*****
+2021-08-26 23:43:27,432 - INFO - epoch: 0, batch_id: 1264, auc: 0.809374, avg_reader_cost: 0.00116 sec, avg_batch_cost: 0.11973 sec, avg_samples: 2048.00000, ips: 17069.70 ins/s
+2021-08-26 23:43:29,010 - INFO - epoch: 0, batch_id: 1280, auc: 0.809375, avg_reader_cost: 0.00056 sec, avg_batch_cost: 0.09839 sec, avg_samples: 2048.00000, ips: 20766.98 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-124_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-178_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-29_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-161_split1*****
+2021-08-26 23:43:30,711 - INFO - epoch: 0, batch_id: 1296, auc: 0.809388, avg_reader_cost: 0.00489 sec, avg_batch_cost: 0.10609 sec, avg_samples: 2048.00000, ips: 19263.15 ins/s
+2021-08-26 23:43:32,201 - INFO - epoch: 0, batch_id: 1312, auc: 0.809365, avg_reader_cost: 0.00417 sec, avg_batch_cost: 0.09286 sec, avg_samples: 2048.00000, ips: 22000.37 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-31_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-38_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-41_split1*****
+2021-08-26 23:43:33,660 - INFO - epoch: 0, batch_id: 1328, auc: 0.809305, avg_reader_cost: 0.00302 sec, avg_batch_cost: 0.09093 sec, avg_samples: 2048.00000, ips: 22464.45 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-196_split1*****
+2021-08-26 23:43:35,139 - INFO - epoch: 0, batch_id: 1344, auc: 0.809250, avg_reader_cost: 0.00056 sec, avg_batch_cost: 0.09220 sec, avg_samples: 2048.00000, ips: 22156.91 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-213_split1*****
+2021-08-26 23:43:36,565 - INFO - epoch: 0, batch_id: 1360, auc: 0.809257, avg_reader_cost: 0.00241 sec, avg_batch_cost: 0.08886 sec, avg_samples: 2048.00000, ips: 22986.87 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-147_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-26_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-139_split1*****
+2021-08-26 23:43:38,031 - INFO - epoch: 0, batch_id: 1376, auc: 0.809276, avg_reader_cost: 0.00090 sec, avg_batch_cost: 0.09139 sec, avg_samples: 2048.00000, ips: 22354.71 ins/s
+2021-08-26 23:43:39,450 - INFO - epoch: 0, batch_id: 1392, auc: 0.809332, avg_reader_cost: 0.00271 sec, avg_batch_cost: 0.08846 sec, avg_samples: 2048.00000, ips: 23091.70 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-10_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-160_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-51_split1*****
+2021-08-26 23:43:40,908 - INFO - epoch: 0, batch_id: 1408, auc: 0.809371, avg_reader_cost: 0.00598 sec, avg_batch_cost: 0.09089 sec, avg_samples: 2048.00000, ips: 22475.16 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-91_split1*****
+2021-08-26 23:43:42,370 - INFO - epoch: 0, batch_id: 1424, auc: 0.809340, avg_reader_cost: 0.00533 sec, avg_batch_cost: 0.09109 sec, avg_samples: 2048.00000, ips: 22425.87 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-185_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-85_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-176_split1*****
+2021-08-26 23:43:43,810 - INFO - epoch: 0, batch_id: 1440, auc: 0.809337, avg_reader_cost: 0.00104 sec, avg_batch_cost: 0.08975 sec, avg_samples: 2048.00000, ips: 22760.28 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-114_split1*****
+2021-08-26 23:43:45,270 - INFO - epoch: 0, batch_id: 1456, auc: 0.809346, avg_reader_cost: 0.00600 sec, avg_batch_cost: 0.09102 sec, avg_samples: 2048.00000, ips: 22442.59 ins/s
+2021-08-26 23:43:46,737 - INFO - epoch: 0, batch_id: 1472, auc: 0.809299, avg_reader_cost: 0.00067 sec, avg_batch_cost: 0.09145 sec, avg_samples: 2048.00000, ips: 22338.80 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-13_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-67_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-62_split1*****
+2021-08-26 23:43:48,231 - INFO - epoch: 0, batch_id: 1488, auc: 0.809329, avg_reader_cost: 0.00457 sec, avg_batch_cost: 0.09314 sec, avg_samples: 2048.00000, ips: 21933.59 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-77_split1*****
+2021-08-26 23:43:49,706 - INFO - epoch: 0, batch_id: 1504, auc: 0.809331, avg_reader_cost: 0.00070 sec, avg_batch_cost: 0.09192 sec, avg_samples: 2048.00000, ips: 22224.89 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-182_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-25_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-24_split1*****
+2021-08-26 23:43:51,147 - INFO - epoch: 0, batch_id: 1520, auc: 0.809351, avg_reader_cost: 0.00084 sec, avg_batch_cost: 0.08981 sec, avg_samples: 2048.00000, ips: 22743.96 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-23_split1*****
+2021-08-26 23:43:52,647 - INFO - epoch: 0, batch_id: 1536, auc: 0.809396, avg_reader_cost: 0.00638 sec, avg_batch_cost: 0.09348 sec, avg_samples: 2048.00000, ips: 21855.12 ins/s
+2021-08-26 23:43:54,110 - INFO - epoch: 0, batch_id: 1552, auc: 0.809407, avg_reader_cost: 0.00302 sec, avg_batch_cost: 0.09121 sec, avg_samples: 2048.00000, ips: 22397.20 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-208_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-186_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-76_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-133_split1*****
+2021-08-26 23:43:55,632 - INFO - epoch: 0, batch_id: 1568, auc: 0.809353, avg_reader_cost: 0.00135 sec, avg_batch_cost: 0.09491 sec, avg_samples: 2048.00000, ips: 21526.10 ins/s
+2021-08-26 23:43:57,132 - INFO - epoch: 0, batch_id: 1584, auc: 0.809358, avg_reader_cost: 0.00166 sec, avg_batch_cost: 0.09333 sec, avg_samples: 2048.00000, ips: 21891.72 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-17_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-103_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-204_split1*****
+2021-08-26 23:43:58,599 - INFO - epoch: 0, batch_id: 1600, auc: 0.809399, avg_reader_cost: 0.00151 sec, avg_batch_cost: 0.09147 sec, avg_samples: 2048.00000, ips: 22330.59 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-65_split1*****
+2021-08-26 23:44:00,016 - INFO - epoch: 0, batch_id: 1616, auc: 0.809425, avg_reader_cost: 0.00048 sec, avg_batch_cost: 0.08832 sec, avg_samples: 2048.00000, ips: 23127.74 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-201_split1*****
+2021-08-26 23:44:01,465 - INFO - epoch: 0, batch_id: 1632, auc: 0.809450, avg_reader_cost: 0.00631 sec, avg_batch_cost: 0.09030 sec, avg_samples: 2048.00000, ips: 22624.69 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-104_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-190_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-57_split1*****
+2021-08-26 23:44:02,939 - INFO - epoch: 0, batch_id: 1648, auc: 0.809421, avg_reader_cost: 0.00154 sec, avg_batch_cost: 0.09189 sec, avg_samples: 2048.00000, ips: 22233.22 ins/s
+2021-08-26 23:44:04,369 - INFO - epoch: 0, batch_id: 1664, auc: 0.809405, avg_reader_cost: 0.00069 sec, avg_batch_cost: 0.08911 sec, avg_samples: 2048.00000, ips: 22925.10 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-212_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-30_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-200_split1*****
+2021-08-26 23:44:05,859 - INFO - epoch: 0, batch_id: 1680, auc: 0.809465, avg_reader_cost: 0.00045 sec, avg_batch_cost: 0.09290 sec, avg_samples: 2048.00000, ips: 21991.92 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-5_split1*****
+2021-08-26 23:44:07,305 - INFO - epoch: 0, batch_id: 1696, auc: 0.809436, avg_reader_cost: 0.00054 sec, avg_batch_cost: 0.09010 sec, avg_samples: 2048.00000, ips: 22671.90 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-61_split1*****
+2021-08-26 23:44:08,737 - INFO - epoch: 0, batch_id: 1712, auc: 0.809412, avg_reader_cost: 0.00102 sec, avg_batch_cost: 0.08928 sec, avg_samples: 2048.00000, ips: 22880.94 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-228_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-106_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-98_split1*****
+2021-08-26 23:44:10,149 - INFO - epoch: 0, batch_id: 1728, auc: 0.809451, avg_reader_cost: 0.00176 sec, avg_batch_cost: 0.08798 sec, avg_samples: 2048.00000, ips: 23217.20 ins/s
+2021-08-26 23:44:11,633 - INFO - epoch: 0, batch_id: 1744, auc: 0.809437, avg_reader_cost: 0.00781 sec, avg_batch_cost: 0.09249 sec, avg_samples: 2048.00000, ips: 22075.89 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-223_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-50_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-227_split1*****
+2021-08-26 23:44:13,104 - INFO - epoch: 0, batch_id: 1760, auc: 0.809398, avg_reader_cost: 0.00170 sec, avg_batch_cost: 0.09163 sec, avg_samples: 2048.00000, ips: 22282.06 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-199_split1*****
+2021-08-26 23:44:14,597 - INFO - epoch: 0, batch_id: 1776, auc: 0.809345, avg_reader_cost: 0.00596 sec, avg_batch_cost: 0.09156 sec, avg_samples: 2048.00000, ips: 21952.32 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-1_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-210_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-169_split1*****
+2021-08-26 23:44:16,027 - INFO - epoch: 0, batch_id: 1792, auc: 0.809333, avg_reader_cost: 0.00047 sec, avg_batch_cost: 0.08911 sec, avg_samples: 2048.00000, ips: 22926.99 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-220_split1*****
+2021-08-26 23:44:17,464 - INFO - epoch: 0, batch_id: 1808, auc: 0.809325, avg_reader_cost: 0.00322 sec, avg_batch_cost: 0.08957 sec, avg_samples: 2048.00000, ips: 22806.57 ins/s
+2021-08-26 23:44:18,910 - INFO - epoch: 0, batch_id: 1824, auc: 0.809316, avg_reader_cost: 0.00191 sec, avg_batch_cost: 0.09015 sec, avg_samples: 2048.00000, ips: 22658.28 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-191_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-128_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-225_split1*****
+2021-08-26 23:44:20,512 - INFO - epoch: 0, batch_id: 1840, auc: 0.809324, avg_reader_cost: 0.00429 sec, avg_batch_cost: 0.09986 sec, avg_samples: 2048.00000, ips: 20461.48 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-7_split1*****
+2021-08-26 23:44:22,448 - INFO - epoch: 0, batch_id: 1856, auc: 0.809306, avg_reader_cost: 0.00915 sec, avg_batch_cost: 0.12076 sec, avg_samples: 2048.00000, ips: 16927.36 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-146_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-58_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-94_split1*****
+2021-08-26 23:44:23,899 - INFO - epoch: 0, batch_id: 1872, auc: 0.809272, avg_reader_cost: 0.00148 sec, avg_batch_cost: 0.09043 sec, avg_samples: 2048.00000, ips: 22592.78 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-3_split1*****
+2021-08-26 23:44:25,350 - INFO - epoch: 0, batch_id: 1888, auc: 0.809260, avg_reader_cost: 0.00065 sec, avg_batch_cost: 0.09044 sec, avg_samples: 2048.00000, ips: 22584.48 ins/s
+2021-08-26 23:44:26,799 - INFO - epoch: 0, batch_id: 1904, auc: 0.809220, avg_reader_cost: 0.00140 sec, avg_batch_cost: 0.08906 sec, avg_samples: 2048.00000, ips: 22619.65 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-71_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-126_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-188_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-163_split1*****
+2021-08-26 23:44:28,238 - INFO - epoch: 0, batch_id: 1920, auc: 0.809186, avg_reader_cost: 0.00304 sec, avg_batch_cost: 0.08972 sec, avg_samples: 2048.00000, ips: 22768.30 ins/s
+2021-08-26 23:44:29,698 - INFO - epoch: 0, batch_id: 1936, auc: 0.809183, avg_reader_cost: 0.00344 sec, avg_batch_cost: 0.08951 sec, avg_samples: 2048.00000, ips: 22445.05 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-32_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-107_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-119_split1*****
+2021-08-26 23:44:31,211 - INFO - epoch: 0, batch_id: 1952, auc: 0.809185, avg_reader_cost: 0.00419 sec, avg_batch_cost: 0.09429 sec, avg_samples: 2048.00000, ips: 21667.31 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-155_split1*****
+2021-08-26 23:44:32,864 - INFO - epoch: 0, batch_id: 1968, auc: 0.809202, avg_reader_cost: 0.00255 sec, avg_batch_cost: 0.10308 sec, avg_samples: 2048.00000, ips: 19823.83 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-121_split1*****
+2021-08-26 23:44:34,509 - INFO - epoch: 0, batch_id: 1984, auc: 0.809251, avg_reader_cost: 0.00284 sec, avg_batch_cost: 0.10253 sec, avg_samples: 2048.00000, ips: 19930.97 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-224_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-149_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-14_split1*****
+2021-08-26 23:44:35,997 - INFO - epoch: 0, batch_id: 2000, auc: 0.809259, avg_reader_cost: 0.00268 sec, avg_batch_cost: 0.09151 sec, avg_samples: 2048.00000, ips: 22024.10 ins/s
+2021-08-26 23:44:37,451 - INFO - epoch: 0, batch_id: 2016, auc: 0.809250, avg_reader_cost: 0.00210 sec, avg_batch_cost: 0.09064 sec, avg_samples: 2048.00000, ips: 22535.77 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-131_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-172_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-181_split1*****
+2021-08-26 23:44:38,897 - INFO - epoch: 0, batch_id: 2032, auc: 0.809277, avg_reader_cost: 0.00083 sec, avg_batch_cost: 0.08859 sec, avg_samples: 2048.00000, ips: 22674.06 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-59_split1*****
+2021-08-26 23:44:40,345 - INFO - epoch: 0, batch_id: 2048, auc: 0.809328, avg_reader_cost: 0.00397 sec, avg_batch_cost: 0.09027 sec, avg_samples: 2048.00000, ips: 22630.03 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-110_split1*****
+2021-08-26 23:44:41,831 - INFO - epoch: 0, batch_id: 2064, auc: 0.809325, avg_reader_cost: 0.00773 sec, avg_batch_cost: 0.09262 sec, avg_samples: 2048.00000, ips: 22056.13 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-69_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-37_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-184_split1*****
+2021-08-26 23:44:43,302 - INFO - epoch: 0, batch_id: 2080, auc: 0.809296, avg_reader_cost: 0.00603 sec, avg_batch_cost: 0.09171 sec, avg_samples: 2048.00000, ips: 22273.63 ins/s
+2021-08-26 23:44:44,744 - INFO - epoch: 0, batch_id: 2096, auc: 0.809291, avg_reader_cost: 0.00212 sec, avg_batch_cost: 0.08989 sec, avg_samples: 2048.00000, ips: 22725.08 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-72_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-150_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-88_split1*****
+2021-08-26 23:44:46,211 - INFO - epoch: 0, batch_id: 2112, auc: 0.809267, avg_reader_cost: 0.00250 sec, avg_batch_cost: 0.09140 sec, avg_samples: 2048.00000, ips: 22349.72 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-205_split1*****
+2021-08-26 23:44:47,670 - INFO - epoch: 0, batch_id: 2128, auc: 0.809239, avg_reader_cost: 0.00065 sec, avg_batch_cost: 0.09093 sec, avg_samples: 2048.00000, ips: 22464.40 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-60_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-173_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-144_split1*****
+2021-08-26 23:44:49,143 - INFO - epoch: 0, batch_id: 2144, auc: 0.809220, avg_reader_cost: 0.00087 sec, avg_batch_cost: 0.09181 sec, avg_samples: 2048.00000, ips: 22253.57 ins/s
+2021-08-26 23:44:50,545 - INFO - epoch: 0, batch_id: 2160, auc: 0.809237, avg_reader_cost: 0.00158 sec, avg_batch_cost: 0.08739 sec, avg_samples: 2048.00000, ips: 23362.33 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-9_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-116_split1*****
+2021-08-26 23:44:52,099 - INFO - epoch: 0, batch_id: 2176, auc: 0.809252, avg_reader_cost: 0.02754 sec, avg_batch_cost: 0.09682 sec, avg_samples: 2048.00000, ips: 21102.12 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-39_split1*****
+2021-08-26 23:44:53,595 - INFO - epoch: 0, batch_id: 2192, auc: 0.809218, avg_reader_cost: 0.02505 sec, avg_batch_cost: 0.09329 sec, avg_samples: 2048.00000, ips: 21900.27 ins/s
+*****/home/aistudio/data/criteo/slot_test_data_full/part-142_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-177_split1*****
+*****/home/aistudio/data/criteo/slot_test_data_full/part-143_split1*****
+2021-08-26 23:44:55,178 - INFO - epoch: 0, batch_id: 2208, auc: 0.809179, avg_reader_cost: 0.02896 sec, avg_batch_cost: 0.09868 sec, avg_samples: 2048.00000, ips: 20703.08 ins/s
+2021-08-26 23:44:56,671 - INFO - epoch: 0, batch_id: 2224, auc: 0.809220, avg_reader_cost: 0.02323 sec, avg_batch_cost: 0.09307 sec, avg_samples: 2048.00000, ips: 21951.77 ins/s
+2021-08-26 23:44:57,863 - INFO - epoch: 0 done, auc: 0.809233, epoch time: 213.54 s
+
+
